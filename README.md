@@ -55,10 +55,9 @@ A modern full-stack Next.js authentication system with OTP verification, OAuth l
 * Next.js
 * React.js
 * Node.js (API Routes)
-* MongoDB
 * NextAuth
 * JWT Authentication
-* CSS / Tailwind (if used)
+* CSS / Tailwind
 
 ---
 
