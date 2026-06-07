@@ -1,0 +1,267 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* Premium Design System Variables */
+:root {
+  --radius: 0.75rem;
+  
+  /* Light Mode - Clean, Professional Palette */
+  --background: #fafafa;
+  --foreground: #0a0a0a;
+  
+  --card: #ffffff;
+  --card-foreground: #0a0a0a;
+  
+  --popover: #ffffff;
+  --popover-foreground: #0a0a0a;
+  
+  --primary: #0a0a0a;
+  --primary-foreground: #fafafa;
+  
+  --secondary: #f5f5f5;
+  --secondary-foreground: #0a0a0a;
+  
+  --muted: #f5f5f5;
+  --muted-foreground: #737373;
+  
+  --accent: #f5f5f5;
+  --accent-foreground: #0a0a0a;
+  
+  --destructive: #ef4444;
+  --destructive-foreground: #fafafa;
+  
+  --border: #e5e5e5;
+  --input: #e5e5e5;
+  --ring: #0a0a0a;
+  
+  /* Additional premium colors */
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --info: #3b82f6;
+}
+
+.dark {
+  /* Dark Mode - Deep, Rich Palette */
+  --background: #0a0a0a;
+  --foreground: #fafafa;
+  
+  --card: #171717;
+  --card-foreground: #fafafa;
+  
+  --popover: #171717;
+  --popover-foreground: #fafafa;
+  
+  --primary: #fafafa;
+  --primary-foreground: #0a0a0a;
+  
+  --secondary: #262626;
+  --secondary-foreground: #fafafa;
+  
+  --muted: #262626;
+  --muted-foreground: #a3a3a3;
+  
+  --accent: #262626;
+  --accent-foreground: #fafafa;
+  
+  --destructive: #dc2626;
+  --destructive-foreground: #fafafa;
+  
+  --border: #262626;
+  --input: #262626;
+  --ring: #fafafa;
+  
+  /* Additional premium colors */
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --info: #3b82f6;
+}
+
+@layer utilities {
+  /* Glass morphism effect */
+  .glass {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  
+  .dark .glass {
+    background: rgba(23, 23, 23, 0.8);
+  }
+  
+  /* Smooth scrolling */
+  .scroll-smooth {
+    scroll-behavior: smooth;
+  }
+  
+  /* Text gradient utility */
+  .text-gradient {
+    background: linear-gradient(135deg, var(--foreground) 0%, var(--muted-foreground) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Hide scrollbar but allow scrolling */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Premium Component Styles */
+@layer components {
+  /* Card Component */
+  .card {
+    @apply bg-card text-card-foreground rounded-lg border border-border shadow-sm;
+    transition: all 0.3s ease;
+  }
+  
+  .card:hover {
+    @apply shadow-md border-border/80;
+    transform: translateY(-2px);
+  }
+  
+  /* Button Enhancements */
+  .btn {
+    @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-all duration-200;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+    @apply disabled:pointer-events-none disabled:opacity-50;
+  }
+  
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm hover:shadow-md;
+  }
+  
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80;
+  }
+  
+  .btn-outline {
+    @apply border border-border bg-transparent hover:bg-accent hover:text-accent-foreground;
+  }
+  
+  .btn-ghost {
+    @apply hover:bg-accent hover:text-accent-foreground;
+  }
+  
+  /* Input Enhancements */
+  .input {
+    @apply flex h-11 w-full rounded-md border border-input bg-background px-4 py-2 text-sm;
+    @apply ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium;
+    @apply placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+    @apply disabled:cursor-not-allowed disabled:opacity-50;
+    transition: all 0.2s ease;
+  }
+  
+  .input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(10, 10, 10, 0.1);
+  }
+  
+  /* Form Labels */
+  .form-label {
+    @apply text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70;
+    @apply text-foreground;
+  }
+  
+  /* Badge Component */
+  .badge {
+    @apply inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold;
+    @apply transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+  }
+  
+  .badge-primary {
+    @apply border-transparent bg-primary text-primary-foreground;
+  }
+  
+  .badge-secondary {
+    @apply border-transparent bg-secondary text-secondary-foreground;
+  }
+  
+  .badge-outline {
+    @apply border-border bg-transparent text-foreground;
+  }
+  
+  /* Avatar */
+  .avatar {
+    @apply relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full;
+    @apply bg-muted;
+  }
+  
+  /* Gradient Backgrounds */
+  .bg-gradient-primary {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  }
+  
+  .bg-gradient-subtle {
+    background: linear-gradient(135deg, var(--background) 0%, var(--muted) 100%);
+  }
+  
+  /* Animation Utilities */
+  .animate-enter {
+    animation: enter 0.3s ease-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.4s ease-out;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+}
+
+/* Custom Animations */
+@keyframes enter {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Smooth transitions for theme switching */
+* {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
