@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 15 23 42;
+    --foreground: 248 250 252;
+    --card: 30 41 59;
+    --card-foreground: 248 250 252;
+    --primary: 59 130 246;
+    --primary-foreground: 15 23 42;
+    --secondary: 100 116 139;
+    --secondary-foreground: 248 250 252;
+    --muted: 71 85 105;
+    --muted-foreground: 226 232 240;
+    --accent: 59 130 246;
+    --accent-foreground: 15 23 42;
+    --destructive: 239 68 68;
+    --destructive-foreground: 15 23 42;
+    --border: 51 65 85;
+    --input: 30 41 59;
+    --ring: 59 130 246;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 15 23 42;
+    --foreground: 248 250 252;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-foreground font-sans antialiased;
+    background-attachment: fixed;
+  }
+}
+
+@layer components {
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent;
+  }
+
+  .card-glass {
+    @apply rounded-2xl bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 shadow-xl;
+  }
+
+  .input-base {
+    @apply w-full px-4 py-2.5 bg-slate-800 border border-slate-600 rounded-lg text-white placeholder:text-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200;
+  }
+
+  .btn-glow {
+    @apply hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-200;
+  }
+
+  .fade-in {
+    @apply animate-in fade-in duration-500;
+  }
+
+  .slide-up {
+    @apply animate-in slide-in-from-bottom-4 duration-500;
+  }
+}
+
+/* Smooth Scrollbar */
+::-webkit-scrollbar {
+  @apply w-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-slate-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-700 rounded-full hover:bg-slate-600;
+}
+
+/* Selection */
+::selection {
+  @apply bg-blue-500/30 text-white;
+}
+
+/* Focus Visible */
+:focus-visible {
+  @apply outline-none ring-2 ring-blue-500 ring-offset-2 ring-offset-slate-950;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.5);
+  }
+}
+
+.animate-float {
+  @apply animate-pulse;
+}
+
+.animate-glow {
+  animation: glow 3s ease-in-out infinite;
+}

@@ -5,11 +5,25 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
       colors: {
-        primary: {
+        slate: {
+          50: '#f8fafc',
+          100: '#f1f5f9',
+          200: '#e2e8f0',
+          300: '#cbd5e1',
+          400: '#94a3b8',
+          500: '#64748b',
+          600: '#475569',
+          700: '#334155',
+          800: '#1e293b',
+          900: '#0f172a',
+          950: '#020617',
+        },
+        blue: {
           50: '#eff6ff',
           100: '#dbeafe',
           200: '#bfdbfe',
@@ -22,42 +36,42 @@ module.exports = {
           900: '#1e3a8a',
           950: '#172554',
         },
-        background: 'var(--background)',
-        foreground: 'var(--foreground)',
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
         card: {
-          DEFAULT: 'var(--card)',
-          foreground: 'var(--card-foreground)',
+          DEFAULT: 'hsl(var(--card))',
+          foreground: 'hsl(var(--card-foreground))',
         },
         popover: {
-          DEFAULT: 'var(--popover)',
-          foreground: 'var(--popover-foreground)',
+          DEFAULT: 'hsl(var(--popover) / <alpha-value>)',
+          foreground: 'hsl(var(--popover-foreground) / <alpha-value>)',
         },
         primary: {
-          DEFAULT: 'var(--primary)',
-          foreground: 'var(--primary-foreground)',
+          DEFAULT: 'hsl(var(--primary))',
+          foreground: 'hsl(var(--primary-foreground))',
         },
         secondary: {
-          DEFAULT: 'var(--secondary)',
-          foreground: 'var(--secondary-foreground)',
+          DEFAULT: 'hsl(var(--secondary))',
+          foreground: 'hsl(var(--secondary-foreground))',
         },
         muted: {
-          DEFAULT: 'var(--muted)',
-          foreground: 'var(--muted-foreground)',
+          DEFAULT: 'hsl(var(--muted))',
+          foreground: 'hsl(var(--muted-foreground))',
         },
         accent: {
-          DEFAULT: 'var(--accent)',
-          foreground: 'var(--accent-foreground)',
+          DEFAULT: 'hsl(var(--accent))',
+          foreground: 'hsl(var(--accent-foreground))',
         },
         destructive: {
-          DEFAULT: 'var(--destructive)',
-          foreground: 'var(--destructive-foreground)',
+          DEFAULT: 'hsl(var(--destructive))',
+          foreground: 'hsl(var(--destructive-foreground))',
         },
-        border: 'var(--border)',
-        input: 'var(--input)',
-        ring: 'var(--ring)',
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        ring: 'hsl(var(--ring))',
       },
       fontFamily: {
-        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -77,6 +91,7 @@ module.exports = {
         'slide-up': 'slideUp 0.5s ease-out',
         'slide-down': 'slideDown 0.5s ease-out',
         'scale-in': 'scaleIn 0.3s ease-out',
+        'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {
@@ -95,9 +110,32 @@ module.exports = {
           '0%': { transform: 'scale(0.95)', opacity: '0' },
           '100%': { transform: 'scale(1)', opacity: '1' },
         },
+        pulseGlow: {
+          '0%, 100%': { 
+            boxShadow: '0 0 20px rgba(59, 130, 246, 0.3)',
+            opacity: '1'
+          },
+          '50%': { 
+            boxShadow: '0 0 40px rgba(59, 130, 246, 0.5)',
+            opacity: '0.8'
+          },
+        },
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss/plugin')(function ({ addUtilities }) {
+      addUtilities({
+        '.text-gradient': {
+          '@apply bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent': {},
+        },
+        '.card-glass': {
+          '@apply rounded-2xl bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 shadow-xl': {},
+        },
+        '.btn-glow': {
+          '@apply hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-200': {},
+        },
+      });
+    }),
+  ],
 }
-
